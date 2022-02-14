@@ -56,10 +56,10 @@ working_states = get_states(paths=all_paths)
 print(f"\n\033[1mКількість можливих робочих станів\033[0m: {len(working_states)}")
 
 probabilities = get_probs(all_working_states=working_states, probs=probabilities)
-title = "| " + " | ".join([f"E{i}" for i in range(1, len(table) - 1)] + [""]) + "P".center(10) + "|"
-print(f'\033[1mВсі робочі стани та їх ймовірність\033[0m:\n{"-" * len(title)}\n{title}\n{"-" * len(title)}')
+header = "| " + " | ".join([f"E{i}" for i in range(1, len(table) - 1)] + [""]) + "P".center(10) + "|"
+print(f'\033[1mВсі робочі стани та їх ймовірність\033[0m:\n{"-" * len(header)}\n{header}\n{"-" * len(header)}')
 for bin_state, st_prob in zip(working_states, probabilities):
-    print("| " + "  | ".join(list(map(str, bin_state[1:-1])) + [""]) + f"{round(st_prob, 6)}".center(10) + "|")
+    print("| " + "  | ".join(list(map(str, bin_state[1:-1])) + [""]) + f"{st_prob:.6f}".center(10) + "|")
 
-print(f'{"-" * len(title)}\n\n'
+print(f'{"-" * len(header)}\n\n'
       f'\033[1mЙмовірність безвідмовної роботи системи\033[0m: {sum(probabilities):.6f}')
